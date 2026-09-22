@@ -26,8 +26,16 @@ namespace WPF_WindowSizeChange {
             if (processes != null) {
                 var process = processes[0];
                 var hwnd = process.MainWindowHandle;
-                if (MainWindow.GetWindowRect(hwnd, out Rect rect)) {
-                    bool result = MainWindow.MoveWindow(hwnd, rect.Left, rect.Top, int.Parse(mainViewModel_.MainWindow.WidthBox.Text), int.Parse(mainViewModel_.MainWindow.HeightBox.Text), false);
+                if (MainWindow.GetWindowRect(hwnd, out Rect windowRect) && MainWindow.GetClientRect(hwnd, out Rect clientRect)) {
+                    int width = int.Parse(mainViewModel_.MainWindow.WidthBox.Text);
+                    int height = int.Parse(mainViewModel_.MainWindow.HeightBox.Text);
+                    int borderWidth = (windowRect.Right - windowRect.Left) - (clientRect.Right - clientRect.Left);
+                    int borderHeight = (windowRect.Bottom - windowRect.Top) - (clientRect.Bottom - clientRect.Top);
+
+                    width = width + borderWidth;
+                    height = height + borderHeight;
+
+                    bool result = MainWindow.MoveWindow(hwnd, windowRect.Left, windowRect.Top, width, height, false);
                     if (!result) {
                         MessageBox.Show("失敗");
                     }
