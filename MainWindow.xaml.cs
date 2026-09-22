@@ -20,10 +20,10 @@ namespace WPF_WindowSizeChange
 
     public partial class MainWindow : Window {
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern bool MoveWindow(IntPtr hwnd, int x, int y, int nWidth, int nHeight, bool bRepaint);
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", SetLastError = true)]
         public static extern bool GetWindowRect(IntPtr hwnd, out Rect rect);
 
         public static List<Process> ProcessList { get; private set; } = new List<Process>();
