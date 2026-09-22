@@ -9,4 +9,12 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="K:\Dev\mochineko\WPF_Project\WPF_WindowSizeChange\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="K:\Dev\mochineko\WPF_Project\WPF_WindowSizeChange\.editorconfig" />
+  </ItemGroup>
+
 </Project>
